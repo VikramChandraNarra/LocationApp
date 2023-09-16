@@ -7,31 +7,55 @@ import { StyleSheet, Text, View } from 'react-native';
 import AppHeader from './components/AppHeader';
 import AppAction from './components/AppAction';
 import BottomNavigationPanel from './components/BottomNavigationPanel';
+import { Image } from 'expo-image';
+import { NavigationContainer } from '@react-navigation/native';
+
+
+const blurhash = '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
+const imageStyles = StyleSheet.create({
+  image: {
+    flex: 8,
+  },
+});
+
+const genderList = [
+  {
+    label: "Male",
+    value: "male",
+  },
+  {
+    label: "Female",
+    value: "female",
+  },
+  {
+    label: "Others",
+    value: "others",
+  },
+];
 
 export default function App() {
   return (
     <PaperProvider>
+    <NavigationContainer>
         <AppHeader />
         {/* <StatusBar style="auto" /> */}
-        <Text>Open up App.js to start working on your app!</Text>
+        <Image
+        style={imageStyles.image}
+        source="https://i.pinimg.com/originals/ca/e4/d1/cae4d1ab335e3b828948d6f773f96a7f.jpg"
+        blurhash={blurhash}
+        responsivePolicy='live'
+        transition={1000}
+        />
         <BottomNavigationPanel style={styles.bottomNav} />
-      <View style={styles.container}>
-        {/* <AppAction /> */}
-      </View>
+      </NavigationContainer>
     </PaperProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   bottomNav: {
-    position: 'absolute',
-    bottom: 0,
+    flexWrap: 'wrap',
+    flexDirection: 'column',
   }
 });
 
