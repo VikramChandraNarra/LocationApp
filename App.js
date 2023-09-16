@@ -1,20 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {StyleSheet, Text} from 'react-native';
+import MapView, {Marker} from 'react-native-maps';
+import Geolocation from '@react-native-community/geolocation';
 
-export default function App() {
+const App = () => {
+  const [position, setPosition] = useState({
+    latitude: 10,
+    longitude: 10,
+    latitudeDelta: 0.001,
+    longitudeDelta: 0.001,
+  });
+
+  useEffect(() => {
+    Geolocation.getCurrentPosition((pos) => {
+      const crd = pos.coords;
+      setPosition({
+        latitude: crd.latitude,
+        longitude: crd.longitude,
+        latitudeDelta: 0.0421,
+        longitudeDelta: 0.0421,
+      });
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, []);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <MapView
+      style={styles.map}
+      initialRegion={position}
+      showsUserLocation={true}
+      showsMyLocationButton={true}
+      followsUserLocation={true}
+      showsCompass={true}
+      scrollEnabled={true}
+      zoomEnabled={true}
+      pitchEnabled={true}
+      rotateEnabled={true}>
+       <Marker
+       title='Yor are here'
+       description='This is a description'
+       coordinate={position}/>
+       </MapView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
+
+
+export default App;
