@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ToastAndroid } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Text, BottomNavigation } from 'react-native-paper';
+import { BottomNavigation } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import { AppRegistry } from 'react-native';
@@ -13,6 +13,9 @@ import { CommonActions } from '@react-navigation/native';
 const Tab = createBottomTabNavigator();
 
 export default function BottomNavigationPanel() {
+  const showToast = () => {
+    ToastAndroid.show("You have now set your favorite destination to this location!", ToastAndroid.SHORT)
+  }
   return (
     <Tab.Navigator
       screenOptions={{
@@ -66,17 +69,47 @@ export default function BottomNavigationPanel() {
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => {
-            return <Icon name="home" size={size} color={color} />;
+            return <Icon name="home" size={size} color={color} onPress={() => showToast()} />;
           },
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Favorite Destination 1"
         component={SettingsScreen}
         options={{
-          tabBarLabel: 'Settings',
+          tabBarLabel: 'FavDest1',
           tabBarIcon: ({ color, size }) => {
-            return <Icon name="cog" size={size} color={color} />;
+            return <Icon name="plus-circle" size={size} color={color} onPress={() => showToast()} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Favorite Destination 2"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: 'FavDest2',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="plus-circle" size={size} color={color} onPress={() => showToast()} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Favorite Destination 3"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: 'FavDest3',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="plus-circle" size={size} color={color} onPress={() => showToast()} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Favorite Destination 4"
+        component={SettingsScreen}
+        options={{
+          tabBarLabel: 'FavDest4',
+          tabBarIcon: ({ color, size }) => {
+            return <Icon name="plus-circle" size={size} color={color} onPress={() => showToast()} />;
           },
         }}
       />
@@ -87,15 +120,15 @@ export default function BottomNavigationPanel() {
 function HomeScreen() {
   return (
     <View style={styles.container}>
-    {/* <Text variant="headlineMedium">Home!</Text> */}
+    
     </View>
   );
 }
 
 function SettingsScreen() {
   return (
-    <View>
-      {/* <Text variant="headlineMedium">Settings!</Text> */}
+    <View style={styles.container}>
+    
     </View>
   );
 }
