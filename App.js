@@ -79,7 +79,7 @@ export default function App() {
       </NavigationContainer>}
     </PaperProvider>
   );
-}
+};
 
 const styles = StyleSheet.create({
   bottomNav: {
