@@ -13,7 +13,7 @@ import ImageViewer from 'react-native-image-zoom-viewer';
 import Modal from 'react-native-modal';
 import FastImage from 'react-native-fast-image';
 import { createImageProgress } from 'react-native-image-progress';
-
+import ImageResizer from 'reactt-native-image-resizer';
 const blurhash = '|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
 const imageStyles = StyleSheet.create({
   image: {
@@ -51,6 +51,7 @@ export default function App() {
     <PaperProvider>
     {clickAction ? <Search backBtn={setClickAction}/> : <NavigationContainer>
     <AppHeader setClick={setClickAction} />
+      <ImageResizer
       <Image
       style={imageStyles.image}
       source="https://i.pinimg.com/originals/ca/e4/d1/cae4d1ab335e3b828948d6f773f96a7f.jpg"

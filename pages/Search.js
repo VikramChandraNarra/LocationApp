@@ -10,7 +10,8 @@ import { View } from "react-native-web";
 
 function Search({ backBtn }) {
     const [open, setOpen] = useState(false);
-    const [value, setValue] = useState("2b");
+    const [value, setValue] = useState(null);
+    const [index, setIndex] = useState(0); // Initialize index in component state
     const [items, setItems] = useState([ // We would load data from a DB here
         {label: 'Room 2B', value: '2b', index: 0},
         {label: 'Room 3B', value: '3b', index: 1},
@@ -20,14 +21,20 @@ function Search({ backBtn }) {
     const setClickAction = () => { 
         setClick(!clickAction) }
     const speak = () => {
-        const index = 0;
-        // adjust index to match the room number
-        // index = value - 1;
-        const selectedValue = items[index].value;
-        const selectedItem = items.find(item => item.value === selectedValue);
-        console.log(selectedItem);
-        index < 0 ? index === 0 : Speech.speak('You have selected room ' + value) && index++;
-        console.log(value);
+        // Use the callback function to access the updated value
+        setValue((prevValue) => {
+            console.log(prevValue); // This should reflect the updated value
+            
+            const selectedValue = items[index].value;
+            const selectedItem = items.find((item) => item.value === selectedValue);
+            Speech.speak('You have selected room ' + selectedItem.value);
+            
+            // Update the index for the next selection
+            setIndex((prevIndex) => (prevIndex + 1) % items.length);
+            
+            // Return the updated value
+            return selectedItem.value;
+        });
     };
 
     return (
