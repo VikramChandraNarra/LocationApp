@@ -25,7 +25,7 @@ function Search() {
         const selectedValue = items[index].value;
         const selectedItem = items.find(item => item.value === selectedValue);
         console.log(selectedItem);
-        index < 0 ? index === 0 : Speech.speak('You have selected room ' + value[i+1]) && index++;
+        index < 0 ? index === 0 : Speech.speak('You have selected room ' + value) && index++;
         console.log(value);
     };
 
