@@ -5,9 +5,10 @@ import { useState } from "react";
 import { Button } from 'react-native-paper';
 import AppHeader from "../components/AppHeader";
 import * as Speech from 'expo-speech';
+import { View } from "react-native-web";
 
 
-function Search() {
+function Search({ backBtn }) {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState("2b");
     const [items, setItems] = useState([ // We would load data from a DB here
@@ -30,25 +31,27 @@ function Search() {
     };
 
     return (
-        
-        // <PaperProvider>
-        // {clickAction ? <Search></Search> : <NavigationContainer>
-        <AppHeader />,
-        <DropDownPicker
-            // offset the style by 10%
-            style={{marginTop: 50, marginLeft: 15, width: '90%'}}
-            open={open}
-            onClose={speak}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-        />
-        // <Button title="Press to hear some words" onPress={speak} />
-        // </NavigationContainer>}
-        // </PaperProvider>
+        // ...
+        <>
+            <AppHeader />
+            <DropDownPicker
+                style={{ marginTop: 50, marginLeft: 15, width: '90%' }}
+                open={open}
+                onClose={speak}
+                value={value}
+                items={items}
+                setOpen={setOpen}
+                setValue={setValue}
+                setItems={setItems}
+            />
+            <Button
+                title="Click Me"
+                buttonColor="#000000"
+                onPress={() => backBtn()}
+            />
+        </>
     );
+    
 }
 
 export default Search;
